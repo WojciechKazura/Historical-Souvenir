@@ -29,7 +29,7 @@ public class ViewSouvenirController {
     ModelAndView getHomePage() {
         ModelAndView modelAndView = new ModelAndView();
         List<Souvenir> souvenirList = service.getSouvenirs();
-        modelAndView.addObject("souvenir", souvenirList.get(0));
+        modelAndView.addObject("souvenirs", souvenirList);
         return modelAndView;
     }
 

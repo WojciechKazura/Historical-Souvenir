@@ -6,7 +6,7 @@
 </head>
 <body>
 <table>
-    <tr>
+    <tr th:each="souvenir:${souvenirs} ">
         <th th:text="${souvenir.id}">
            id
         </th>
