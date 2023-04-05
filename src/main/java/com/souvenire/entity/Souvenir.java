@@ -28,6 +28,17 @@ public class Souvenir {
      Souvenir() {
     }
 
+    @Override
+    public String toString() {
+        return "Souvenir{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", souvenirYear=" + souvenirYear +
+                ", category='" + category + '\'' +
+                ", historicalPeriod='" + historicalPeriod + '\'' +
+                '}';
+    }
+
     public String getName() {
         return name;
     }

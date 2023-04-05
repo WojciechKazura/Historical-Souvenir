@@ -26,10 +26,10 @@ public class ViewSouvenirController {
     }
 
     @GetMapping("/view")
-    ModelAndView getHomePage(){
-        ModelAndView modelAndView= new ModelAndView();
-        List<Souvenir> souvenirList=service.getSouvenirs();
-        modelAndView.addObject("souvenir",souvenirList.get(0));
+    ModelAndView getHomePage() {
+        ModelAndView modelAndView = new ModelAndView();
+        List<Souvenir> souvenirList = service.getSouvenirs();
+        modelAndView.addObject("souvenir", souvenirList.get(0));
         return modelAndView;
     }
 
