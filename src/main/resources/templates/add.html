@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodawanie pamiątek</title>
+</head>
+<body>
+add
+<div>
+    <form action="/add" method="post">
+        <label>
+            Podaj nazwę pamiątki.
+        </label>
+        <input type="text" name="name">
+        <label>
+            Wprowadz rok z którego pochodzi pamiątka.
+        </label>
+        <input type="number" name="year">
+        <label>
+            Podaj kategorie pamiątki.
+        </label>
+        <select name="category">
+            <option value="uniform">Umundurowanie </option>
+            <option value="weapon">Broń</option>
+            <option value="medal">Odznaczenia</option>
+            <option value="document">Dokumenty</option>
+            <option value="other">Inne</option>
+        </select>
+        <label>
+            Podaj okres historyczny.
+        </label>
+        <input type="text" name="historicalPeriod">
+        <button type="submit">
+            Dodaj pamiątkę
+        </button>
+    </form>
+</div>
+</body>
+</html>

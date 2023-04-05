@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Przeglądaj</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th th:text="${souvenir.id}"}>
+           id
+        </th>
+        <th th:text="${souvenir.name}">
+            name
+        </th>
+        <th th:text="${souvenir.souvenirYear}">
+            year
+        </th>
+        <th th:text="${category.category}">
+            category
+        </th>
+        <th th:text="${historicalPeriod.historicalPeriod}">
+            historicalPeriod
+        </th>
+    </tr>
+</table>
+</body>
+</html>
