@@ -6,6 +6,18 @@
     <link href="styles.css" rel="stylesheet"/>
 </head>
 <body>
+<form action="/view" method="post">
+    <select name="category">
+        <option value="uniform">Umundurowanie </option>
+        <option value="weapon">Broń</option>
+        <option value="medal">Odznaczenia</option>
+        <option value="document">Dokumenty</option>
+        <option value="other">Inne</option>
+    </select>
+    <button type="submit">
+        Wyszukaj
+    </button>
+</form>
 <table>
     <tr th:each="souvenir:${souvenirs} ">
         <th th:text="${souvenir.id}">

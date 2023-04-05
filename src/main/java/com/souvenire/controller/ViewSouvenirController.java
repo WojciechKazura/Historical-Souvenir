@@ -4,6 +4,7 @@ import com.souvenire.entity.Souvenir;
 import com.souvenire.service.SouvenirService;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
@@ -27,10 +28,19 @@ public class ViewSouvenirController {
 
     @GetMapping("/view")
     ModelAndView getHomePage() {
-        ModelAndView modelAndView = new ModelAndView();
+        ModelAndView modelAndView = new ModelAndView("view");
         List<Souvenir> souvenirList = service.getSouvenirs();
         modelAndView.addObject("souvenirs", souvenirList);
         return modelAndView;
     }
+    @PostMapping("/view")
+    ModelAndView addSouvenir( String category){
+        ModelAndView modelAndView = new ModelAndView("view");
+        List<Souvenir> souvenirList=service.findByCategory(category);
+        modelAndView.addObject("souvenirs", souvenirList);
+        return modelAndView;
+    }
+
+
 
 }
