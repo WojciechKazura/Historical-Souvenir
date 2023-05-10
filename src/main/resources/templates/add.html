@@ -7,7 +7,7 @@
 <body>
 add
 <div>
-    <form action="/add" method="post">
+    <form action="/add" method="post" enctype="multipart/form-data">
         <label>
             Podaj nazwę pamiątki.
         </label>
@@ -30,6 +30,7 @@ add
             Podaj okres historyczny.
         </label>
         <input type="text" name="historicalPeriod">
+        <input type="file" name="image" accept="image/*">
         <button type="submit">
             Dodaj pamiątkę
         </button>

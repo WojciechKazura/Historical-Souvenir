@@ -16,6 +16,8 @@ public class Souvenir {
     private String category;
     @Column(name="historical_period")
     private String historicalPeriod;
+    @Column(name="image_name")
+    private String imageName;
 
     public Souvenir(String name, int year, String category, String historicalPeriod) {
         this.name = name;
@@ -57,5 +59,13 @@ public class Souvenir {
 
     public String getHistoricalPeriod() {
         return historicalPeriod;
+    }
+
+    public String getImageName() {
+        return imageName;
+    }
+
+    public void setImageName(String imageName) {
+        this.imageName = imageName;
     }
 }
