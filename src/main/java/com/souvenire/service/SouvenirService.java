@@ -35,7 +35,7 @@ public class SouvenirService {
         souvenirRepository.save(souvenir);
         System.out.println(newName);
         // Określ ścieżkę, w której zostanie zapisany plik
-        Path uploadDir = Paths.get("uploads");
+        Path uploadDir = Paths.get("src/main/resources/static/images");
         Path filePath = uploadDir.resolve(newName);
         System.out.println(filePath);
         // Zapisz plik na dysku
