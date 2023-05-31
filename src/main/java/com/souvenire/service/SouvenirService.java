@@ -28,21 +28,10 @@ public class SouvenirService {
         System.out.println("Dodaje pamiątkę " + name + " z roku " + year + " z kategori " + category + " z okresu " + historicalPeriod + " .");
         Souvenir souvenir = new Souvenir(name, year, category, historicalPeriod);
         souvenirRepository.save(souvenir);
+        boolean isImage=imageFile.isEmpty();
+        saveImage(isImage,imageFile, souvenir);
         // Pobierz nazwę pliku
-        String fileName = StringUtils.cleanPath(imageFile.getOriginalFilename());
-        String string[]=fileName.split("\\.");
-        String newName=souvenir.getId()+"."+string[1];
-        souvenir.setImageName(newName);
-        souvenirRepository.save(souvenir);
-        System.out.println(newName);
-        // Określ ścieżkę, w której zostanie zapisany plik
-        Path uploadDir = Paths.get(UPLOAD_DIRECTORY);
-        Path filePath = uploadDir.resolve(newName);
-        System.out.println(filePath);
-        // Zapisz plik na dysku
-        Files.createDirectories(uploadDir);
-        Files.copy(imageFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
-        // Zapisz informacje o pliku w bazie danych
+
     }
 
     public List<Souvenir> getSouvenirs() {
@@ -58,6 +47,38 @@ public class SouvenirService {
             }
         }
         return filterList;
+    }
+
+    private void saveImage(boolean isImage, MultipartFile imageFile, Souvenir souvenir)throws IOException{
+        if(!isImage){
+            String fileName = StringUtils.cleanPath(imageFile.getOriginalFilename());
+            String string[]=fileName.split("\\.");
+            String newName=souvenir.getId()+"."+string[1];
+            souvenir.setImageName(newName);
+            souvenirRepository.save(souvenir);
+            System.out.println(newName);
+            // Określ ścieżkę, w której zostanie zapisany plik
+            Path uploadDir = Paths.get(UPLOAD_DIRECTORY);
+            Path filePath = uploadDir.resolve(newName);
+            System.out.println(filePath);
+            // Zapisz plik na dysku
+            Files.createDirectories(uploadDir);
+            Files.copy(imageFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+            // Zapisz informacje o pliku w bazie danych
+        }else{
+            String newName="empty.jpg";
+            souvenir.setImageName(newName);
+            souvenirRepository.save(souvenir);
+            System.out.println(newName);
+            // Określ ścieżkę, w której zostanie zapisany plik
+            Path uploadDir = Paths.get(UPLOAD_DIRECTORY);
+            Path filePath = uploadDir.resolve(newName);
+            System.out.println(filePath);
+            // Zapisz informacje o pliku w bazie danych
+        }
+
+
+
     }
 
 }
