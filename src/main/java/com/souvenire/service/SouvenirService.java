@@ -17,6 +17,7 @@ import java.util.List;
 @Service
 public class SouvenirService {
 
+    public static final String UPLOAD_DIRECTORY ="src/main/resources/static/upload";
     private SouvenirRepository souvenirRepository;
 
     public SouvenirService(SouvenirRepository souvenirRepository) {
@@ -35,7 +36,7 @@ public class SouvenirService {
         souvenirRepository.save(souvenir);
         System.out.println(newName);
         // Określ ścieżkę, w której zostanie zapisany plik
-        Path uploadDir = Paths.get("src/main/resources/static/images");
+        Path uploadDir = Paths.get(UPLOAD_DIRECTORY);
         Path filePath = uploadDir.resolve(newName);
         System.out.println(filePath);
         // Zapisz plik na dysku
