@@ -36,11 +36,13 @@ public class AddSouvenirController {
     }
 
     @PostMapping("/add")
-    String addSouvenir(String name, int year, String category, String historicalPeriod,@RequestParam("image") MultipartFile imageFile) throws IOException {
+    ModelAndView addSouvenir(String name, int year, String category, String historicalPeriod,@RequestParam("image") MultipartFile imageFile) throws IOException {
         System.out.println(imageFile.getName());
         System.out.println(imageFile.getOriginalFilename());
         service.addSouvenir(name, year, category,historicalPeriod, imageFile);
-        return "add-result";
+        ModelAndView modelAndView =new ModelAndView("home");
+        modelAndView.addObject("description","Dodano poprawnie pamiątkę");
+        return modelAndView;
     }
 
 
