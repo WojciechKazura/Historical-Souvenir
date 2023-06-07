@@ -2,11 +2,13 @@ package com.souvenire.service;
 
 import com.souvenire.entity.Souvenir;
 import com.souvenire.repository.SouvenirRepository;
+import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
+import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
@@ -63,7 +65,15 @@ public class SouvenirService {
             System.out.println(filePath);
             // Zapisz plik na dysku
             Files.createDirectories(uploadDir);
-            Files.copy(imageFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+            // Wymiary docelowego obrazka
+            int targetWidth = 800;
+            int targetHeight = 600;
+            // Oblicz proporcjonalne wymiary zmniejszonego obrazka
+            Thumbnails.Builder<? extends InputStream> thumbnailBuilder = Thumbnails.of(imageFile.getInputStream());
+            thumbnailBuilder.size(targetWidth, targetHeight);
+            thumbnailBuilder.keepAspectRatio(true);
+            thumbnailBuilder.toFile(filePath.toFile());
+           // Files.copy(imageFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
             // Zapisz informacje o pliku w bazie danych
         }else{
             String newName="empty.jpg";
