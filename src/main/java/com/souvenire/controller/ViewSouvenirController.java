@@ -34,9 +34,9 @@ public class ViewSouvenirController {
         return modelAndView;
     }
     @PostMapping("/view")
-    ModelAndView addSouvenir( String category){
+    ModelAndView addSouvenir(String name, Integer year, String category, String period){
         ModelAndView modelAndView = new ModelAndView("view");
-        List<Souvenir> souvenirList=service.findByCategory(category);
+        List<Souvenir> souvenirList=service.findByParameters(name, year, category, period);
         modelAndView.addObject("souvenirs", souvenirList);
         return modelAndView;
     }

@@ -36,7 +36,7 @@ public class AddSouvenirController {
     }
 
     @PostMapping("/add")
-    ModelAndView addSouvenir(String name, int year, String category, String historicalPeriod,@RequestParam("image") MultipartFile imageFile) throws IOException {
+    ModelAndView addSouvenir(String name, Integer year, String category, String historicalPeriod,@RequestParam("image") MultipartFile imageFile) throws IOException {
         System.out.println(imageFile.getName());
         System.out.println(imageFile.getOriginalFilename());
         System.out.println(imageFile.isEmpty());

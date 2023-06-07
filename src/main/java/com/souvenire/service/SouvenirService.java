@@ -26,7 +26,7 @@ public class SouvenirService {
         this.souvenirRepository = souvenirRepository;
     }
 
-    public void addSouvenir(String name, int year, String category, String historicalPeriod, MultipartFile imageFile) throws IOException {
+    public void addSouvenir(String name, Integer year, String category, String historicalPeriod, MultipartFile imageFile) throws IOException {
         System.out.println("Dodaje pamiątkę " + name + " z roku " + year + " z kategori " + category + " z okresu " + historicalPeriod + " .");
         Souvenir souvenir = new Souvenir(name, year, category, historicalPeriod);
         souvenirRepository.save(souvenir);
@@ -50,6 +50,23 @@ public class SouvenirService {
         }
         return filterList;
     }
+
+    public List<Souvenir> findByParameters(String name,Integer year, String category, String period) {
+        List<Souvenir> souvenirList = getSouvenirs();
+        List<Souvenir> filterList = new ArrayList<>();
+        for (Souvenir souvenir : souvenirList) {
+            boolean nameCorrect=name==null||souvenir.getName().equals(name);
+            boolean yearCorrect=year==null||souvenir.getSouvenirYear()==year;
+            boolean categoryCorrect=category==null||souvenir.getCategory().equals(category);
+            boolean periodCorrect=period==null||souvenir.getHistoricalPeriod().equals(period);
+            if (nameCorrect&&yearCorrect&&categoryCorrect&&periodCorrect) {
+                filterList.add(souvenir);
+            }
+        }
+        return filterList;
+    }
+
+
 
     private void saveImage(boolean isImage, MultipartFile imageFile, Souvenir souvenir)throws IOException{
         if(!isImage){

@@ -8,20 +8,18 @@
 <body>
 <form action="/view" method="post">
     <select name="category">
-        <option value="uniform">Umundurowanie </option>
+        <option value="uniform">Umundurowanie</option>
         <option value="weapon">Broń</option>
         <option value="medal">Odznaczenia</option>
         <option value="document">Dokumenty</option>
         <option value="other">Inne</option>
     </select>
-    <button type="submit">
-        Wyszukaj
-    </button>
+    <button type ="submit" >Znajdż</button>
 </form>
 <table>
     <tr th:each="souvenir:${souvenirs} ">
         <th th:text="${souvenir.id}">
-           id
+            id
         </th>
         <th th:text="${souvenir.name}">
             name
@@ -35,8 +33,8 @@
         <th th:text="${souvenir.historicalPeriod}">
             historicalPeriod
         </th>
-       <th>
-      <img th:src="${'images/'+souvenir.imageName}" alt="Obrazek" >
+        <th>
+            <img th:src="${'images/'+souvenir.imageName}" alt="Obrazek">
 
         </th>
     </tr>
