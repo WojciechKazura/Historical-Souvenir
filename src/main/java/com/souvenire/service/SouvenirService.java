@@ -3,6 +3,7 @@ package com.souvenire.service;
 import com.souvenire.entity.Souvenir;
 import com.souvenire.repository.SouvenirRepository;
 import net.coobird.thumbnailator.Thumbnails;
+import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -19,7 +20,7 @@ import java.util.List;
 @Service
 public class SouvenirService {
 
-    public static final String UPLOAD_DIRECTORY ="src/main/resources/static/upload";
+    public static final String UPLOAD_DIRECTORY = "src/main/resources/static/upload";
     private SouvenirRepository souvenirRepository;
 
     public SouvenirService(SouvenirRepository souvenirRepository) {
@@ -30,8 +31,8 @@ public class SouvenirService {
         System.out.println("Dodaje pamiątkę " + name + " z roku " + year + " z kategori " + category + " z okresu " + historicalPeriod + " .");
         Souvenir souvenir = new Souvenir(name, year, category, historicalPeriod);
         souvenirRepository.save(souvenir);
-        boolean isImage=imageFile.isEmpty();
-        saveImage(isImage,imageFile, souvenir);
+        boolean isImage = imageFile.isEmpty();
+        saveImage(isImage, imageFile, souvenir);
         // Pobierz nazwę pliku
 
     }
@@ -51,28 +52,33 @@ public class SouvenirService {
         return filterList;
     }
 
-    public List<Souvenir> findByParameters(String name,Integer year, String category, String period) {
+    public List<Souvenir> findByParameters(String name, Integer year, String category, String period) {
+        List<Souvenir> souvenirList = souvenirRepository.findBySouvenirYear(year);
+
+        return souvenirList;
+    }
+
+   /* public List<Souvenir> findByParameters(String name, Integer year, String category, String period) {
         List<Souvenir> souvenirList = getSouvenirs();
         List<Souvenir> filterList = new ArrayList<>();
         for (Souvenir souvenir : souvenirList) {
-            boolean nameCorrect=name==null||souvenir.getName().equals(name);
-            boolean yearCorrect=year==null||souvenir.getSouvenirYear()==year;
-            boolean categoryCorrect=category==null||souvenir.getCategory().equals(category);
-            boolean periodCorrect=period==null||souvenir.getHistoricalPeriod().equals(period);
-            if (nameCorrect&&yearCorrect&&categoryCorrect&&periodCorrect) {
+           boolean nameCorrect = name == null || souvenir.getName().equals(name);
+           boolean yearCorrect = year == null || souvenir.getSouvenirYear() == year;
+           boolean categoryCorrect = category == null || souvenir.getCategory().equals(category);
+           boolean periodCorrect = period == null || souvenir.getHistoricalPeriod().equals(period);
+            if (nameCorrect && yearCorrect && categoryCorrect && periodCorrect) {
                 filterList.add(souvenir);
             }
         }
+
         return filterList;
-    }
+    }*/
 
-
-
-    private void saveImage(boolean isImage, MultipartFile imageFile, Souvenir souvenir)throws IOException{
-        if(!isImage){
+    private void saveImage(boolean isImage, MultipartFile imageFile, Souvenir souvenir) throws IOException {
+        if (!isImage) {
             String fileName = StringUtils.cleanPath(imageFile.getOriginalFilename());
-            String string[]=fileName.split("\\.");
-            String newName=souvenir.getId()+"."+string[1];
+            String string[] = fileName.split("\\.");
+            String newName = souvenir.getId() + "." + string[1];
             souvenir.setImageName(newName);
             souvenirRepository.save(souvenir);
             System.out.println(newName);
@@ -90,10 +96,10 @@ public class SouvenirService {
             thumbnailBuilder.size(targetWidth, targetHeight);
             thumbnailBuilder.keepAspectRatio(true);
             thumbnailBuilder.toFile(filePath.toFile());
-           // Files.copy(imageFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
+            // Files.copy(imageFile.getInputStream(), filePath, StandardCopyOption.REPLACE_EXISTING);
             // Zapisz informacje o pliku w bazie danych
-        }else{
-            String newName="empty.jpg";
+        } else {
+            String newName = "empty.jpg";
             souvenir.setImageName(newName);
             souvenirRepository.save(souvenir);
             System.out.println(newName);
@@ -103,7 +109,6 @@ public class SouvenirService {
             System.out.println(filePath);
             // Zapisz informacje o pliku w bazie danych
         }
-
 
 
     }

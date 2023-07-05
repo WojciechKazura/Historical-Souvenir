@@ -7,6 +7,14 @@
 </head>
 <body>
 <form action="/view" method="post">
+    <label>
+        Podaj nazwę pamiątki.
+    </label>
+    <input type="text" name="name">
+    <label>
+        Wprowadz rok z którego pochodzi pamiątka.
+    </label>
+    <input type="number" name="year">
     <select name="category">
         <option value="uniform">Umundurowanie</option>
         <option value="weapon">Broń</option>
@@ -14,6 +22,10 @@
         <option value="document">Dokumenty</option>
         <option value="other">Inne</option>
     </select>
+    <label>
+        Podaj okres historyczny.
+    </label>
+    <input type="text" name="name">
     <button type ="submit" >Znajdż</button>
 </form>
 <table>
