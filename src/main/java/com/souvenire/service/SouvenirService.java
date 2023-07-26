@@ -3,7 +3,6 @@ package com.souvenire.service;
 import com.souvenire.entity.Souvenir;
 import com.souvenire.repository.SouvenirRepository;
 import net.coobird.thumbnailator.Thumbnails;
-import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
 import org.springframework.web.multipart.MultipartFile;
@@ -13,7 +12,6 @@ import java.io.InputStream;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.nio.file.StandardCopyOption;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -27,9 +25,9 @@ public class SouvenirService {
         this.souvenirRepository = souvenirRepository;
     }
 
-    public void addSouvenir(String name, Integer year, String category, String historicalPeriod, MultipartFile imageFile) throws IOException {
-        System.out.println("Dodaje pamiątkę " + name + " z roku " + year + " z kategori " + category + " z okresu " + historicalPeriod + " .");
-        Souvenir souvenir = new Souvenir(name, year, category, historicalPeriod);
+    public void addSouvenir(String name, Integer year, String category, String historicalPeriod, MultipartFile imageFile, String article) throws IOException {
+        System.out.println("Dodaje pamiątkę " + name + " z roku " + year + " z kategori " + category + " z okresu " + historicalPeriod + " ."+"atukuł "+article);
+        Souvenir souvenir = new Souvenir(name, year, category, historicalPeriod, article);
         souvenirRepository.save(souvenir);
         boolean isImage = imageFile.isEmpty();
         saveImage(isImage, imageFile, souvenir);

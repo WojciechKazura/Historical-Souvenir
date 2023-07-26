@@ -19,11 +19,16 @@ public class Souvenir {
     @Column(name="image_name")
     private String imageName;
 
-    public Souvenir(String name, int year, String category, String historicalPeriod) {
+    @Column(name="article")
+    @Lob
+    private String article;
+
+    public Souvenir(String name, int year, String category, String historicalPeriod, String article) {
         this.name = name;
         this.souvenirYear = year;
         this.category = category;
         this.historicalPeriod = historicalPeriod;
+        this.article = article;
     }
 
 
@@ -67,5 +72,9 @@ public class Souvenir {
 
     public void setImageName(String imageName) {
         this.imageName = imageName;
+    }
+
+    public String getArticle() {
+        return article;
     }
 }
