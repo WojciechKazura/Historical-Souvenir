@@ -1,33 +1,40 @@
 package com.souvenire.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.ManyToMany;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
 
 import java.util.List;
 
 @Entity
-@Table (name="scenarios")
+@Table(name = "scenarios")
 public class Scenario {
 
     @Id
+    @GeneratedValue
     private int id;
 
     private String name;
+    private String description;
+
+    @ManyToMany
+    private List<Souvenir> souvenirList;
+
+    public Scenario( String name, String description) {
+        this.name = name;
+        this.description = description;
+
+    }
 
     public String getDescription() {
         return description;
     }
 
-    @ManyToMany
-    private List<Souvenir> souvenirList;
-
-    private String description;
-
-
-
-
-
-
+    @Override
+    public String toString() {
+        return "Scenario{" +
+                "id=" + id +
+                ", name='" + name + '\'' +
+                ", description='" + description + '\'' +
+                ", souvenirList=" + souvenirList +
+                '}';
+    }
 }

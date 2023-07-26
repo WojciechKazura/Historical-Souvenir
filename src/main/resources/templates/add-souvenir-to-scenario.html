@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Dodawanie sceniariuszy zwiedzania.</title>
+    <link href="styles.css" rel="stylesheet"/>
+</head>
+<body>
+<form action="/add" method="post" enctype="multipart/form-data">
+    <table>
+        <tr th:each="souvenir:${souvenirs} ">
+            <th th:text="${souvenir.id}">
+                id
+            </th>
+            <th th:text="${souvenir.name}">
+                name
+            </th>
+            <th th:text="${souvenir.souvenirYear}">
+                year
+            </th>
+            <th th:text="${souvenir.category}">
+                category
+            </th>
+            <th th:text="${souvenir.historicalPeriod}">
+                historicalPeriod
+            </th>
+            <th>
+                <img th:src="${'images/'+souvenir.imageName}" alt="Obrazek">
+
+            </th>
+        </tr>
+    </table>
+    <label>
+        Wybierz pamiątki.
+    </label>
+    <form action="/view" method="post">
+        <label>
+            Wybierz pamiątki do sceniariusza.
+        </label>
+        <label>
+            Wprowadz id pamiątki.
+        </label>
+        <input type="number" name="id" min="0">
+        <button type="submit">Dodaj</button>
+    </form>
+</form>
+
+<div>
+    <a href="/">
+        Powrót.
+    </a>
+</div>
+</body>
+</html>
