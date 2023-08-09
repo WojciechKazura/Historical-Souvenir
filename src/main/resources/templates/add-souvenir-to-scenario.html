@@ -6,45 +6,66 @@
     <link href="styles.css" rel="stylesheet"/>
 </head>
 <body>
-<form action="/add" method="post" enctype="multipart/form-data">
-    <table>
-        <tr th:each="souvenir:${souvenirs} ">
-            <th th:text="${souvenir.id}">
-                id
-            </th>
-            <th th:text="${souvenir.name}">
-                name
-            </th>
-            <th th:text="${souvenir.souvenirYear}">
-                year
-            </th>
-            <th th:text="${souvenir.category}">
-                category
-            </th>
-            <th th:text="${souvenir.historicalPeriod}">
-                historicalPeriod
-            </th>
-            <th>
-                <img th:src="${'images/'+souvenir.imageName}" alt="Obrazek">
+Stworzono scenariusz.
+<div
+        th:text="'Numer senariusza to '+${scenario.id}+' nazwa scenaruisza:'+${scenario.name}+' opis scenariusza: '+${scenario.description}"
+></div>
 
-            </th>
-        </tr>
-    </table>
+<table>
+    <tr>
+        <th>
+            Numer pamiątki:
+        </th>
+        <th>
+            Nazwa pamiątki:
+        </th>
+        <th>
+            Datowanie:
+        </th>
+        <th>
+            Rodzaj:
+        </th>
+        <th>
+            Okres historyczny:
+        </th>
+        <th>
+            Zdjęcie:
+        </th>
+
+
+    </tr>
+    <tr th:each="souvenir:${souvenirs} ">
+        <th th:text="${souvenir.id}">
+            id
+        </th>
+        <th th:text="${souvenir.name}">
+            name
+        </th>
+        <th th:text="${souvenir.souvenirYear}">
+            year
+        </th>
+        <th th:text="${souvenir.category}">
+            category
+        </th>
+        <th th:text="${souvenir.historicalPeriod}">
+            historicalPeriod
+        </th>
+        <th>
+            <img th:src="${'images/'+souvenir.imageName}" alt="Obrazek">
+
+        </th>
+    </tr>
+</table>
+<form action="/add-souvenir-to-scenario" method="post">
     <label>
-        Wybierz pamiątki.
+        Wybierz pamiątki do sceniariusza.
     </label>
-    <form action="/view" method="post">
-        <label>
-            Wybierz pamiątki do sceniariusza.
-        </label>
-        <label>
-            Wprowadz id pamiątki.
-        </label>
-        <input type="number" name="id" min="0">
-        <button type="submit">Dodaj</button>
-    </form>
+    <label>
+        Wprowadz id pamiątki.
+    </label>
+    <input type="number" name="id" min="0">
+    <button type="submit">Dodaj</button>
 </form>
-
 <div>
     <a href="/">
         Powrót.

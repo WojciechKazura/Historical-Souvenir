@@ -11,7 +11,6 @@ public class Scenario {
     @Id
     @GeneratedValue
     private int id;
-
     private String name;
     private String description;
 
@@ -24,8 +23,24 @@ public class Scenario {
 
     }
 
+    public void addSouvenir(Souvenir souvenir){
+        souvenirList.add(souvenir);
+    }
+
     public String getDescription() {
         return description;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public List<Souvenir> getSouvenirList() {
+        return souvenirList;
     }
 
     @Override
