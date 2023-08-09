@@ -63,7 +63,10 @@ Stworzono scenariusz.
     <label>
         Wprowadz id pamiątki.
     </label>
-    <input type="number" name="id" min="0">
+    <input type ="hidden" name ="scenarioID"  th:value="${scenario.id}"
+
+    >
+    <input type="number" name="souvenirID" min="0">
     <button type="submit">Dodaj</button>
 </form>
 <div>

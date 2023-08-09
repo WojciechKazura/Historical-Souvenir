@@ -2,6 +2,7 @@ package com.souvenire.entity;
 
 import jakarta.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -15,11 +16,15 @@ public class Scenario {
     private String description;
 
     @ManyToMany
-    private List<Souvenir> souvenirList;
+    private List<Souvenir> souvenirList=new ArrayList<>();
 
     public Scenario( String name, String description) {
         this.name = name;
         this.description = description;
+
+    }
+
+    public Scenario() {
 
     }
 

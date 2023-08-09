@@ -13,8 +13,9 @@ public class ScenarioService {
     private ScenarioRepository scenarioRepository;
     private SouvenirRepository souvenirRepository;
 
-    public ScenarioService(ScenarioRepository scenarioRepository) {
+    public ScenarioService(ScenarioRepository scenarioRepository, SouvenirRepository souvenirRepository) {
         this.scenarioRepository = scenarioRepository;
+        this.souvenirRepository = souvenirRepository;
     }
 
     public Scenario addScenario(String name, String description) {
@@ -27,7 +28,7 @@ public class ScenarioService {
         Scenario scenario=scenarioRepository.findById(scenarioId).orElseThrow();
         Souvenir souvenir=souvenirRepository.findById(souvenirId).orElseThrow();
         scenario.addSouvenir(souvenir);
-
+        scenarioRepository.save(scenario);
     }
 
 

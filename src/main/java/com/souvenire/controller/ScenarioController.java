@@ -33,18 +33,18 @@ public class ScenarioController {
 
     @PostMapping("/add-scenario")
     ModelAndView addScenario(String name, String description) throws IOException {
-        Scenario scenrio = scenarioService.addScenario(name, description);
+        Scenario scenario = scenarioService.addScenario(name, description);
         ModelAndView modelAndView = new ModelAndView("add-souvenir-to-scenario");
-        modelAndView.addObject("scenario", scenrio);
+        modelAndView.addObject("scenario", scenario);
         List<Souvenir> souvenirList = souvenirService.getSouvenirs();
         modelAndView.addObject("souvenirs", souvenirList);
         return modelAndView;
     }
 
     @PostMapping("/add-souvenir-to-scenario")
-    void addSouvenirToScenario(int scenarioID,int souvenirID) {
+    ModelAndView addSouvenirToScenario(int scenarioID,int souvenirID) {
         scenarioService.addSouvenir(scenarioID,souvenirID);
-
+        return new ModelAndView("home");
     }
 
 
