@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Dostępne scenariusze.</title>
+</head>
+<body>
+<table>
+  <tr th:each="scenario:${scenarios} ">
+    <th th:text="${scenario.id}">
+      id
+    </th>
+    <th th:text="${scenario.name}">
+      name
+    </th>
+    <th th:text="${scenario.description}">
+      description
+    </th>
+  </tr>
+</table>
+<div>
+  <a href="/">
+    Powrót
+  </a>
+</div>
+</body>
+</html>

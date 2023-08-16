@@ -17,24 +17,24 @@ public class ViewSouvenirController {
     //@RequestMapping(path="/view",method = RequestMethod.GET)
    /* @GetMapping("/view")
     ModelAndView getHomePage(){
-        return  new ModelAndView("view.html");
+        return  new ModelAndView("view-souvenirs.html");
     }*/
 
     public ViewSouvenirController(SouvenirService service) {
         this.service = service;
     }
 
-    @GetMapping("/view")
+    @GetMapping("/view-souvenirs")
     ModelAndView getHomePage() {
-        ModelAndView modelAndView = new ModelAndView("view");
+        ModelAndView modelAndView = new ModelAndView("view-souvenirs");
         List<Souvenir> souvenirList = service.getSouvenirs();
         modelAndView.addObject("souvenirs", souvenirList);
         return modelAndView;
     }
 
-    @PostMapping("/view")
+    @PostMapping("/view-souvenirs")
     ModelAndView searchSouvenir(String name, Integer year, String category, String period) { //skad ten przecinek?
-        ModelAndView modelAndView = new ModelAndView("view");
+        ModelAndView modelAndView = new ModelAndView("view-souvenirs");
         List<Souvenir> souvenirList = service.findByParameters(name, year, category, period);
         modelAndView.addObject("souvenirs", souvenirList);
         return modelAndView;

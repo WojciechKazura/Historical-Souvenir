@@ -15,21 +15,18 @@ public class AddSouvenirController {
 
     private SouvenirService service;
 
-
     public AddSouvenirController(SouvenirService service) {
         this.service = service;
     }
 
-  ;
-
-    @RequestMapping(path="/add",method = RequestMethod.GET)
+    @RequestMapping(path="/add-souvenir",method = RequestMethod.GET)
     ModelAndView addSouvenirForm(){
         ModelAndView modelAndView= new ModelAndView();
-        modelAndView.setViewName("add.html");//plik html
+        modelAndView.setViewName("add-souvenir.html");//plik html
         return modelAndView;
     }
 
-    @PostMapping("/add")
+    @PostMapping("/add-souvenir")
     ModelAndView addSouvenir(String name, Integer year, String category, String historicalPeriod,@RequestParam("image") MultipartFile imageFile, String article) throws IOException {
         service.addSouvenir(name, year, category,historicalPeriod, imageFile, article);
         ModelAndView modelAndView =new ModelAndView("home");

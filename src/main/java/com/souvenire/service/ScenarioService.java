@@ -7,6 +7,8 @@ import com.souvenire.repository.ScenarioRepository;
 import com.souvenire.repository.SouvenirRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class ScenarioService {
 
@@ -32,4 +34,11 @@ public class ScenarioService {
     }
 
 
+    public Scenario getScenario(int scenarioID) {
+       return scenarioRepository.findById(scenarioID).orElseThrow();
+    }
+
+    public List<Scenario> getAllScenario(){
+        return scenarioRepository.findAll();
+    }
 }

@@ -34,6 +34,10 @@ public class ScenarioController {
     @PostMapping("/add-scenario")
     ModelAndView addScenario(String name, String description) throws IOException {
         Scenario scenario = scenarioService.addScenario(name, description);
+        return addSouvenireToScenarioPage(scenario);
+    }
+
+    ModelAndView addSouvenireToScenarioPage(Scenario scenario) {
         ModelAndView modelAndView = new ModelAndView("add-souvenir-to-scenario");
         modelAndView.addObject("scenario", scenario);
         List<Souvenir> souvenirList = souvenirService.getSouvenirs();
@@ -44,7 +48,8 @@ public class ScenarioController {
     @PostMapping("/add-souvenir-to-scenario")
     ModelAndView addSouvenirToScenario(int scenarioID,int souvenirID) {
         scenarioService.addSouvenir(scenarioID,souvenirID);
-        return new ModelAndView("home");
+        Scenario scenario =  scenarioService.getScenario(scenarioID);
+        return addSouvenireToScenarioPage(scenario);
     }
 
 
