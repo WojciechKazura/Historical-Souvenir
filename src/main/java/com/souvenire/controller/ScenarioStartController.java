@@ -20,13 +20,14 @@ public class ScenarioStartController {
     }
 
     @PostMapping("/scenario-start")
-    ModelAndView start(int scenarioID) {
+    ModelAndView start(int scenarioID,int souvenirIndex) {
         System.out.println("Start"+ scenarioID);
         ModelAndView modelAndView = new ModelAndView("scenario-start");
         Scenario scenario = scenarioService.getScenario(scenarioID);
-        Souvenir souvenir = scenario.getSouvenirList().get(0);
+        Souvenir souvenir = scenario.getSouvenirList().get(souvenirIndex);
         modelAndView.addObject("souvenir",souvenir);
         modelAndView.addObject("scenario",scenario);
+        modelAndView.addObject("souvenirIndex",souvenirIndex);
         return modelAndView;
     }
 

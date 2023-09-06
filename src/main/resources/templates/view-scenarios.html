@@ -19,6 +19,7 @@
     <th>
       <form action="/scenario-start" method="post">
         <input type="hidden" th:value="${scenario.id}" name="scenarioID">
+        <input type="hidden" th:value="0" name="souvenirIndex">
         <button type="submit">
           Wybierz
         </button>
