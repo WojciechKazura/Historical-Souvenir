@@ -20,18 +20,16 @@ public class ScenarioStartController {
 
     @PostMapping("/scenario-start")
     ModelAndView start(int scenarioID, int souvenirIndex) {
-        System.out.println("Start" + scenarioID);
         ModelAndView modelAndView = new ModelAndView("scenario-start");
         Scenario scenario = scenarioService.getScenario(scenarioID);
-        if (souvenirIndex < scenario.getSouvenirList().size()) {
-            Souvenir souvenir = scenario.getSouvenirList().get(souvenirIndex);
-            modelAndView.addObject("souvenir", souvenir);
-            modelAndView.addObject("scenario", scenario);
-            modelAndView.addObject("souvenirIndex", souvenirIndex);
-        } else {
-            System.out.println("koniec");
+        if (souvenirIndex >= scenario.getSouvenirList().size()) {
             modelAndView.setViewName("redirect:/view-scenarios");
+            return modelAndView;
         }
+        Souvenir souvenir = scenario.getSouvenirList().get(souvenirIndex);
+        modelAndView.addObject("souvenir", souvenir);
+        modelAndView.addObject("scenario", scenario);
+        modelAndView.addObject("souvenirIndex", souvenirIndex);
         return modelAndView;
     }
 
