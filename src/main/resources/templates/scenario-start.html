@@ -6,6 +6,12 @@
 </head>
 <body>
 <div th:text ="${scenario.name}"></div>
-
+<div>
+    <div th:text="${souvenir.name}"></div>
+    <div th:text="${souvenir.souvenirYear}"></div>
+    <div th:text="${souvenir.historicalPeriod}"></div>
+    <img th:src="${'images/'+souvenir.imageName}">
+    <div th:text="${souvenir.article}"></div>
+</div>
 </body>
 </html>
