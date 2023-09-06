@@ -9,11 +9,11 @@ import org.springframework.web.servlet.ModelAndView;
 import java.util.List;
 
 @Controller
-public class ViewScenarioController {
+public class ViewScenariosController {
 
     private ScenarioService scenarioService;
 
-    public ViewScenarioController(ScenarioService scenarioService) {
+    public ViewScenariosController(ScenarioService scenarioService) {
         this.scenarioService = scenarioService;
     }
 
@@ -24,6 +24,11 @@ public class ViewScenarioController {
         modelAndView.addObject("scenarios", scenarioList);
         return modelAndView;
     }
+
+
+
+
+
 
    /* @PostMapping("/view")
         ModelAndView searchSouvenir(String name, Integer year, String category, String period) { //skad ten przecinek?
