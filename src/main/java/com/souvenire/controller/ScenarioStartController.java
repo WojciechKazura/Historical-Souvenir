@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
 
-
 @Controller
 public class ScenarioStartController {
 
@@ -20,18 +19,21 @@ public class ScenarioStartController {
     }
 
     @PostMapping("/scenario-start")
-    ModelAndView start(int scenarioID,int souvenirIndex) {
-        System.out.println("Start"+ scenarioID);
+    ModelAndView start(int scenarioID, int souvenirIndex) {
+        System.out.println("Start" + scenarioID);
         ModelAndView modelAndView = new ModelAndView("scenario-start");
         Scenario scenario = scenarioService.getScenario(scenarioID);
-        Souvenir souvenir = scenario.getSouvenirList().get(souvenirIndex);
-        modelAndView.addObject("souvenir",souvenir);
-        modelAndView.addObject("scenario",scenario);
-        modelAndView.addObject("souvenirIndex",souvenirIndex);
+        if (souvenirIndex < scenario.getSouvenirList().size()) {
+            Souvenir souvenir = scenario.getSouvenirList().get(souvenirIndex);
+            modelAndView.addObject("souvenir", souvenir);
+            modelAndView.addObject("scenario", scenario);
+            modelAndView.addObject("souvenirIndex", souvenirIndex);
+        } else {
+            System.out.println("koniec");
+            modelAndView.setViewName("redirect:/view-scenarios");
+        }
         return modelAndView;
     }
-
-
 
 
 }
