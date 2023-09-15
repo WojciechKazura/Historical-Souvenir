@@ -4,7 +4,6 @@ import com.souvenire.entity.Scenario;
 import com.souvenire.entity.Souvenir;
 import com.souvenire.service.ScenarioService;
 import org.springframework.stereotype.Controller;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.servlet.ModelAndView;
 
