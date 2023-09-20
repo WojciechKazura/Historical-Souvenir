@@ -29,8 +29,9 @@ public class SecurityConfig {// juz nie trzeba dziedziczyc po klasie security
         httpSecurity.headers(customizer -> customizer.disable());
         // httpSecurity.authorizeHttpRequests(auth -> auth.anyRequest().permitAll()); wyłącza security
         httpSecurity.authorizeHttpRequests(auth -> auth.requestMatchers("/", "/add-user").permitAll()
-                .anyRequest().authenticated())
+                        .anyRequest().authenticated())
                 .formLogin();
+        httpSecurity.userDetailsService(userService);
         return httpSecurity.build();
     }
 
@@ -38,17 +39,17 @@ public class SecurityConfig {// juz nie trzeba dziedziczyc po klasie security
     public InMemoryUserDetailsManager getUserDetailsManager() {
         //tworze obiekt uzytkownika
         UserDetails user1 = User.withUsername("admin")
-                .password(passwordEncoder.encode( "aaa")) // koduje haslo
+                .password(passwordEncoder.encode("aaa")) // koduje haslo
                 .roles("moderator")
                 .build();
 
         UserDetails user2 = User.withUsername("adam")
-                .password(passwordEncoder.encode( "bbb")) // koduje haslo
+                .password(passwordEncoder.encode("bbb")) // koduje haslo
                 .roles("user")
                 .build();
 
         //tworzę obiekt zarzadzajacy uzytkownikami
-        return new InMemoryUserDetailsManager(user1,user2);
+        return new InMemoryUserDetailsManager(user1, user2);
     }
 
 }
