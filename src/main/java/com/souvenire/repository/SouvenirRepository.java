@@ -13,5 +13,9 @@ public interface SouvenirRepository extends JpaRepository<Souvenir, Integer> {
     @Query("SELECT s FROM Souvenir s WHERE (:year IS NULL OR s.souvenirYear = :year)")// s.x to pole w klasie a jak jest :x to parametr metody
     List<Souvenir> findBySouvenirYear(Integer year);
     //zrobić wersję obsługującą wszystkie 4 parametry wyszukiwania i również doczytać o Specifications API
+    @Query("SELECT s FROM Souvenir s WHERE (s.accepted =true)")
+    List<Souvenir> findByAccepted();
+
+
 
 }

@@ -29,6 +29,7 @@ public class SecurityConfig {// juz nie trzeba dziedziczyc po klasie security
         httpSecurity.headers(customizer -> customizer.disable());
         // httpSecurity.authorizeHttpRequests(auth -> auth.anyRequest().permitAll()); wyłącza security
         httpSecurity.authorizeHttpRequests(auth -> auth.requestMatchers("/", "/add-user").permitAll()
+                        .requestMatchers("/admin").hasRole("admin")
                         .anyRequest().authenticated())
                 .formLogin();
         httpSecurity.userDetailsService(userService);

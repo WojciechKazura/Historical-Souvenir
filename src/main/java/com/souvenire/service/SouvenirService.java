@@ -2,6 +2,7 @@ package com.souvenire.service;
 
 import com.souvenire.entity.Souvenir;
 import com.souvenire.repository.SouvenirRepository;
+import jakarta.transaction.Transactional;
 import net.coobird.thumbnailator.Thumbnails;
 import org.springframework.stereotype.Service;
 import org.springframework.util.StringUtils;
@@ -26,7 +27,7 @@ public class SouvenirService {
     }
 
     public void addSouvenir(String name, Integer year, String category, String historicalPeriod, MultipartFile imageFile, String article) throws IOException {
-        System.out.println("Dodaje pamiątkę " + name + " z roku " + year + " z kategori " + category + " z okresu " + historicalPeriod + " ."+"atukuł "+article);
+        System.out.println("Dodaje pamiątkę " + name + " z roku " + year + " z kategori " + category + " z okresu " + historicalPeriod + " ." + "atukuł " + article);
         Souvenir souvenir = new Souvenir(name, year, category, historicalPeriod, article);
         souvenirRepository.save(souvenir);
         boolean isImage = imageFile.isEmpty();
@@ -35,12 +36,16 @@ public class SouvenirService {
 
     }
 
-    public List<Souvenir> getSouvenirs() {
+    public List<Souvenir> getAcceptedSouvenirs() {
+        return souvenirRepository.findByAccepted();
+    }
+
+    public List<Souvenir> getAllSouvenirs() {
         return souvenirRepository.findAll();
     }
 
     public List<Souvenir> findByCategory(String category) {
-        List<Souvenir> souvenirList = getSouvenirs();
+        List<Souvenir> souvenirList = getAcceptedSouvenirs();
         List<Souvenir> filterList = new ArrayList<>();
         for (Souvenir souvenir : souvenirList) {
             if (souvenir.getCategory().equals(category)) {
@@ -107,8 +112,12 @@ public class SouvenirService {
             System.out.println(filePath);
             // Zapisz informacje o pliku w bazie danych
         }
-
-
     }
+
+    @Transactional // modyfikacje obiektów objęte tranzakcja są modyfikowane w bazie danych
+    public void acceptSouvenir(int souvenirID) {
+        souvenirRepository.findById(souvenirID).orElseThrow().setAccepted(true);
+    }
+
 
 }

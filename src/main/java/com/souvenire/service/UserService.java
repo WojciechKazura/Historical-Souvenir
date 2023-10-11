@@ -36,7 +36,7 @@ public class UserService implements UserDetailsService {
         if(userOptional.isPresent()){
             UserDetails userDetails = org.springframework.security.core.userdetails.User.withUsername(username)
                     .password(userOptional.get().getPassword())
-                    .roles("")
+                    .roles(userOptional.get().getRole())
                     .build();
             return userDetails;
         }

@@ -27,7 +27,7 @@ public class ViewSouvenirController {
     @GetMapping("/view-souvenirs")
     ModelAndView getHomePage() {
         ModelAndView modelAndView = new ModelAndView("view-souvenirs");
-        List<Souvenir> souvenirList = service.getSouvenirs();
+        List<Souvenir> souvenirList = service.getAcceptedSouvenirs();
         modelAndView.addObject("souvenirs", souvenirList);
         return modelAndView;
     }
@@ -39,6 +39,12 @@ public class ViewSouvenirController {
         modelAndView.addObject("souvenirs", souvenirList);
         return modelAndView;
     }
-
+    @GetMapping("/admin")
+    ModelAndView viewSouvenir() { //skad ten przecinek?
+        ModelAndView modelAndView = new ModelAndView("admin");
+        List<Souvenir> souvenirList = service.getAllSouvenirs();
+        modelAndView.addObject("souvenirs", souvenirList);
+        return modelAndView;
+    }
 
 }

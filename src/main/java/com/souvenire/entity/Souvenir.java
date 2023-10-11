@@ -23,12 +23,16 @@ public class Souvenir {
     @Lob
     private String article;
 
+    @Column(name= "accepted")
+    private boolean accepted;
+
     public Souvenir(String name, int year, String category, String historicalPeriod, String article) {
         this.name = name;
         this.souvenirYear = year;
         this.category = category;
         this.historicalPeriod = historicalPeriod;
         this.article = article;
+        accepted=false;
     }
 
 
@@ -43,6 +47,9 @@ public class Souvenir {
                 ", souvenirYear=" + souvenirYear +
                 ", category='" + category + '\'' +
                 ", historicalPeriod='" + historicalPeriod + '\'' +
+                ", imageName='" + imageName + '\'' +
+                ", article='" + article + '\'' +
+                ", accepted=" + accepted +
                 '}';
     }
 
@@ -53,6 +60,8 @@ public class Souvenir {
     public int getSouvenirYear() {
         return souvenirYear;
     }
+
+
 
     public int getId() {
         return id;
@@ -76,5 +85,12 @@ public class Souvenir {
 
     public String getArticle() {
         return article;
+    }
+    public boolean isAccepted() {
+        return accepted;
+    }
+
+    public void setAccepted(boolean accepted) {
+        this.accepted = accepted;
     }
 }

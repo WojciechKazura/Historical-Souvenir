@@ -40,7 +40,7 @@ public class ScenarioController {
     ModelAndView addSouvenireToScenarioPage(Scenario scenario) {
         ModelAndView modelAndView = new ModelAndView("add-souvenir-to-scenario");
         modelAndView.addObject("scenario", scenario);
-        List<Souvenir> souvenirList = souvenirService.getSouvenirs();
+        List<Souvenir> souvenirList = souvenirService.getAcceptedSouvenirs();
         modelAndView.addObject("souvenirs", souvenirList);
         return modelAndView;
     }

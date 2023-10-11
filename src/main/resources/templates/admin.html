@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<tr th:each="souvenir:${souvenirs} ">
+  <th th:text="${souvenir.id}">
+    id
+  </th>
+  <th th:text="${souvenir.name}">
+    name
+  </th>
+  <th th:text="${souvenir.souvenirYear}">
+    year
+  </th>
+  <th th:text="${souvenir.category}">
+    category
+  </th>
+  <th th:text="${souvenir.historicalPeriod}">
+    historicalPeriod
+  </th>
+  <th>
+    <img th:src="${'images/'+souvenir.imageName}" alt="Obrazek">
+
+  </th>
+  <th>
+    <form method="post" action="/admin">
+      <input type="hidden" name ="souvenirID"  th:value="${souvenir.id}">
+      <button type="submit">
+        akceptuj
+      </button>
+    </form>
+  </th>
+</tr>
+
+</table>
+
+<div>
+  <a href="/">
+    Powrót
+  </a>
+</div>
+
+
+
+
+</body>
+</html>

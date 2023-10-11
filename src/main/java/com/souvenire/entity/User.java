@@ -21,7 +21,7 @@ public class User {
     public User(String login, String password) {
         this.login = login;
         this.password = password;
-        this.admin=false;
+        this.admin = false;
     }
 
     @Override
@@ -40,5 +40,12 @@ public class User {
         return password;
     }
 
+    public String getRole() {
+        if (admin) {
+            return "admin";
+        } else {
+            return "user";
+        }
+    }
 
 }
