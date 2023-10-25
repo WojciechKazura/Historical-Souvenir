@@ -37,9 +37,15 @@
     </a>
 </div>
 <div>
-    <a href='/admin'>
+    <a href='/login'>
+        Zaloguj się
+    </a>
+</div>
+<div>
+    <a href='/admin' th:if="${isAdmin}">
         Dla administratora
     </a>
 </div>
+
 </body>
 </html>

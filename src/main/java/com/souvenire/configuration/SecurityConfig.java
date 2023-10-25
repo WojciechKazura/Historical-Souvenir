@@ -31,7 +31,8 @@ public class SecurityConfig {// juz nie trzeba dziedziczyc po klasie security
         httpSecurity.authorizeHttpRequests(auth -> auth.requestMatchers("/", "/add-user").permitAll()
                         .requestMatchers("/admin").hasRole("admin")
                         .anyRequest().authenticated())
-                .formLogin();
+                .formLogin()
+                        .defaultSuccessUrl("/");
         httpSecurity.userDetailsService(userService);
         return httpSecurity.build();
     }
