@@ -37,7 +37,7 @@ public class SouvenirService {
     }
 
     public List<Souvenir> getAcceptedSouvenirs() {
-        return souvenirRepository.findByAccepted();
+        return souvenirRepository.find(true);
     }
 
     public List<Souvenir> getAllSouvenirs() {
@@ -45,7 +45,7 @@ public class SouvenirService {
     }
 
     public List<Souvenir> getUnAcceptedSouvenirs(){
-        return souvenirRepository.findUnAccepted();
+        return souvenirRepository.find(false);
     }
 
     public List<Souvenir> findByCategory(String category) {

@@ -11,15 +11,27 @@ public interface SouvenirRepository extends JpaRepository<Souvenir, Integer> {
 
     //1. wykorzystanie
     @Query("SELECT s FROM Souvenir s WHERE (:year IS NULL OR s.souvenirYear = :year)")
-// s.x to pole w klasie a jak jest :x to parametr metody
+    // s.x to pole w klasie a jak jest :x to parametr metody
     List<Souvenir> findBySouvenirYear(Integer year);
 
     //zrobić wersję obsługującą wszystkie 4 parametry wyszukiwania i również doczytać o Specifications API
-    @Query("SELECT s FROM Souvenir s WHERE (s.accepted =true)")
+   /* @Query("SELECT s FROM Souvenir s WHERE (s.accepted =true)")
     List<Souvenir> findByAccepted();
 
     @Query("SELECT s FROM Souvenir s WHERE (s.accepted = false)")
     List<Souvenir> findUnAccepted();
+*/
+    @Query("SELECT s FROM Souvenir s WHERE (s.accepted = :accepted)")
+// : każe szukać w parametrach
+    List<Souvenir> find(boolean accepted);
+
+  /* default List<Souvenir> find(boolean accepted){
+        if(accepted){
+            return findByAccepted();
+        }else {
+           return findUnAccepted();
+        }
+    }*/
 
 
 }
