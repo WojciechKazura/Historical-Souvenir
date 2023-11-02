@@ -3,6 +3,9 @@ package com.souvenire.service;
 
 import com.souvenire.entity.User;
 import com.souvenire.repository.UserRepository;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -41,5 +44,21 @@ public class UserService implements UserDetailsService {
             return userDetails;
         }
         throw  new UsernameNotFoundException("Nie ma takiego użytkownika.");
+    }
+
+    public boolean isAdmin() {
+        // Pobierz obiekt Authentication z SecurityContextHolder
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        System.out.println(authentication.getName());
+        // Pobierz role użytkownika
+        // W przypadku roli, możesz uzyskać dostęp do obiektu GrantedAuthority
+        // a następnie pobrać nazwę roli za pomocą metody getAuthority()
+        for (GrantedAuthority authority : authentication.getAuthorities()) {
+            String role = authority.getAuthority();
+            if (role.equals("ROLE_admin")) {
+                return true;
+            }
+        }
+        return false;
     }
 }
