@@ -44,6 +44,10 @@ public class SouvenirService {
         return souvenirRepository.findAll();
     }
 
+    public List<Souvenir> getUnAcceptedSouvenirs(){
+        return souvenirRepository.findUnAccepted();
+    }
+
     public List<Souvenir> findByCategory(String category) {
         List<Souvenir> souvenirList = getAcceptedSouvenirs();
         List<Souvenir> filterList = new ArrayList<>();

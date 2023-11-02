@@ -42,7 +42,7 @@ public class ViewSouvenirController {
     @GetMapping("/admin")
     ModelAndView viewSouvenir() { //skad ten przecinek?
         ModelAndView modelAndView = new ModelAndView("admin");
-        List<Souvenir> souvenirList = service.getAllSouvenirs();
+        List<Souvenir> souvenirList = service.getUnAcceptedSouvenirs();
         modelAndView.addObject("souvenirs", souvenirList);
         return modelAndView;
     }

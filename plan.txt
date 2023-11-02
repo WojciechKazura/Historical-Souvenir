@@ -1,0 +1,2 @@
+1. problem z wylogowywaniem.
+2. problem z pojawiającymi sie dla admina pamiątkami.
