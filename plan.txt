@@ -1,2 +1,1 @@
-1. problem z wylogowywaniem.
-2. problem z pojawiającymi sie dla admina pamiątkami.
+Zatwierdzanie przez admina gotowe przetestować i zastonowic się co dalej

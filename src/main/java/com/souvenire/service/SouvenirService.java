@@ -44,7 +44,7 @@ public class SouvenirService {
         return souvenirRepository.findAll();
     }
 
-    public List<Souvenir> getUnAcceptedSouvenirs(){
+    public List<Souvenir> getUnAcceptedSouvenirs() {
         return souvenirRepository.find(false);
     }
 
@@ -59,10 +59,33 @@ public class SouvenirService {
         return filterList;
     }
 
-    public List<Souvenir> findByParameters(String name, Integer year, String category, String period) {
-        List<Souvenir> souvenirList = souvenirRepository.findBySouvenirYear(year);
+    public List<Souvenir> findByParameters(String name, Integer year , String category, String period) {
+        ///name jest z przecinkiem, inteager dział coś wchodzi tez null, category działa, ale nie może byc nullem, period zawsze jest null!!!!!!!!!!!!!1
+        // po podaniu period dopisuje sie po przecinki do name a sam pozostaje null
+        // html był problemem
+        System.out.println(name);
+        System.out.println(year);
+        System.out.println(category);
+        System.out.println(period);
 
-        return souvenirList;
+        if(!name.equals("")){
+            return souvenirRepository.findBySouvenirForName(name,true);
+        }
+        if(year!=null){
+            return souvenirRepository.findBySouvenirYear(year,true);
+        }
+        if(!category.equals("")){
+            System.out.println("do zrobienia");
+        }
+        if(!period.equals("")){
+            return souvenirRepository.findBySouvenirParametersForHistoricalPeriod(period,true);
+        }
+        else{
+            return souvenirRepository.findBySouvenirParameters(name,year,category,period,true);
+            //działa ale tylko dla dokładnych wyszukiwań z wszystkimi danymi
+        }
+
+
     }
 
    /* public List<Souvenir> findByParameters(String name, Integer year, String category, String period) {

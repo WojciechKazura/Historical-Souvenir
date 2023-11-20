@@ -10,9 +10,26 @@ import java.util.List;
 public interface SouvenirRepository extends JpaRepository<Souvenir, Integer> {
 
     //1. wykorzystanie
-    @Query("SELECT s FROM Souvenir s WHERE (:year IS NULL OR s.souvenirYear = :year)")
     // s.x to pole w klasie a jak jest :x to parametr metody
-    List<Souvenir> findBySouvenirYear(Integer year);
+    // : każe szukać w parametrach
+    @Query("SELECT s FROM Souvenir s WHERE (s.accepted = :accepted AND s.name = :name)")
+    List<Souvenir> findBySouvenirForName(String name,boolean accepted);
+
+    @Query("SELECT s FROM Souvenir s WHERE (s.accepted = :accepted AND s.souvenirYear = :year)")
+    List<Souvenir> findBySouvenirYear(Integer year, boolean accepted);
+
+    //@Query("SELECT s FROM Souvenir s WHERE (s.accepted = :accepted AND s.category = :category)")
+    //List<Souvenir> findBySouvenirParametersForCategory(String category);
+
+    @Query("SELECT s FROM Souvenir s WHERE (s.accepted = :accepted AND s.historicalPeriod = :period)")
+    List<Souvenir> findBySouvenirParametersForHistoricalPeriod(String period,boolean accepted);
+
+    @Query("SELECT s FROM Souvenir s WHERE (s.accepted = :accepted AND s.name = :name AND s.souvenirYear = :year AND s.category = :category AND s.historicalPeriod =:period )")
+    List<Souvenir> findBySouvenirParameters(String name, Integer year, String category, String period, boolean accepted);
+
+
+    //@Query("SELECT s FROM Souvenir s WHERE (s.accepted = :accepted AND s.name = :name)")
+    //List<Souvenir> findByParameters(boolean accepted, String name, Integer year, String category, String period);
 
     //zrobić wersję obsługującą wszystkie 4 parametry wyszukiwania i również doczytać o Specifications API
    /* @Query("SELECT s FROM Souvenir s WHERE (s.accepted =true)")

@@ -33,14 +33,14 @@ public class ViewSouvenirController {
     }
 
     @PostMapping("/view-souvenirs")
-    ModelAndView searchSouvenir(String name, Integer year, String category, String period) { //skad ten przecinek?
+    ModelAndView searchSouvenir(String name, Integer year, String category, String period) { //skad ten przecinek?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         ModelAndView modelAndView = new ModelAndView("view-souvenirs");
         List<Souvenir> souvenirList = service.findByParameters(name, year, category, period);
         modelAndView.addObject("souvenirs", souvenirList);
         return modelAndView;
     }
     @GetMapping("/admin")
-    ModelAndView viewSouvenir() { //skad ten przecinek?
+    ModelAndView viewSouvenir() { //skad ten przecinek?!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
         ModelAndView modelAndView = new ModelAndView("admin");
         List<Souvenir> souvenirList = service.getUnAcceptedSouvenirs();
         modelAndView.addObject("souvenirs", souvenirList);
