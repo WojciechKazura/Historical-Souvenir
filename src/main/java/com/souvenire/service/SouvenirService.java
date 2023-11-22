@@ -59,50 +59,24 @@ public class SouvenirService {
         return filterList;
     }
 
-    public List<Souvenir> findByParameters(String name, Integer year , String category, String period) {
-        ///name jest z przecinkiem, inteager dział coś wchodzi tez null, category działa, ale nie może byc nullem, period zawsze jest null!!!!!!!!!!!!!1
-        // po podaniu period dopisuje sie po przecinki do name a sam pozostaje null
-        // html był problemem
-        System.out.println(name);
-        System.out.println(year);
-        System.out.println(category);
-        System.out.println(period);
 
-        if(!name.equals("")){
-            return souvenirRepository.findBySouvenirForName(name,true);
-        }
-        if(year!=null){
-            return souvenirRepository.findBySouvenirYear(year,true);
-        }
-        if(!category.equals("")){
-            System.out.println("do zrobienia");
-        }
-        if(!period.equals("")){
-            return souvenirRepository.findBySouvenirParametersForHistoricalPeriod(period,true);
-        }
-        else{
-            return souvenirRepository.findBySouvenirParameters(name,year,category,period,true);
-            //działa ale tylko dla dokładnych wyszukiwań z wszystkimi danymi
-        }
+    public List<Souvenir> findByParameters(String name, Integer year, String category, String period) {
+
+        name=prepareParameter(name);
+        category=prepareParameter(category);
+        period=prepareParameter(period);
+
+        return souvenirRepository.findSouvenirs(name,year,category,period,true);
 
 
     }
 
-   /* public List<Souvenir> findByParameters(String name, Integer year, String category, String period) {
-        List<Souvenir> souvenirList = getSouvenirs();
-        List<Souvenir> filterList = new ArrayList<>();
-        for (Souvenir souvenir : souvenirList) {
-           boolean nameCorrect = name == null || souvenir.getName().equals(name);
-           boolean yearCorrect = year == null || souvenir.getSouvenirYear() == year;
-           boolean categoryCorrect = category == null || souvenir.getCategory().equals(category);
-           boolean periodCorrect = period == null || souvenir.getHistoricalPeriod().equals(period);
-            if (nameCorrect && yearCorrect && categoryCorrect && periodCorrect) {
-                filterList.add(souvenir);
-            }
+    String prepareParameter(String parameter) {
+        if (parameter.equals("")) {
+            return null;
         }
-
-        return filterList;
-    }*/
+        return parameter;
+    }
 
     private void saveImage(boolean isImage, MultipartFile imageFile, Souvenir souvenir) throws IOException {
         if (!isImage) {
