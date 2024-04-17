@@ -4,7 +4,6 @@ package com.souvenire.configuration;
 import com.souvenire.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.access.method.P;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -37,7 +36,7 @@ public class SecurityConfig {// juz nie trzeba dziedziczyc po klasie security
         return httpSecurity.build();
     }
 
-    @Bean
+   /* @Bean
     public InMemoryUserDetailsManager getUserDetailsManager() {
         //tworze obiekt uzytkownika
         UserDetails user1 = User.withUsername("admin")
@@ -52,6 +51,6 @@ public class SecurityConfig {// juz nie trzeba dziedziczyc po klasie security
 
         //tworzę obiekt zarzadzajacy uzytkownikami
         return new InMemoryUserDetailsManager(user1, user2);
-    }
+    }*/
 
 }
