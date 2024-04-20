@@ -1,36 +1,29 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Dostępne scenariusze.</title>
-</head>
-<body>
-<table>
-  <tr th:each="scenario:${scenarios} ">
-    <th th:text="${scenario.id}">
-      id
-    </th>
-    <th th:text="${scenario.name}">
-      name
-    </th>
-    <th th:text="${scenario.description}">
-      description
-    </th>
-    <th>
-      <form action="/scenario-start" method="post">
-        <input type="hidden" th:value="${scenario.id}" name="scenarioID">
-        <input type="hidden" th:value="0" name="souvenirIndex">
-        <button type="submit">
-          Wybierz
-        </button>
-      </form>
-    </th>
-  </tr>
-</table>
-<div>
-  <a href="/">
-    Powrót
-  </a>
-</div>
-</body>
+    <link rel="stylesheet" href="../static/styles.css" />
+  </head>
+  <body>
+    <div class="view-scenarios-root">
+      <h1 class="header">Dostępne scenariusze</h1>
+      <div class="scenario-list">
+        <div th:each="scenario:${scenarios} " class="scenario-card">
+          <p th:text="${scenario.id}">id</p>
+          <p></p>
+          <p th:text="${scenario.name}">name</p>
+          <p th:text="${scenario.description}">description</p>
+          <form action="/scenario-start" method="post">
+            <input type="hidden" th:value="${scenario.id}" name="scenarioID" />
+            <input type="hidden" th:value="0" name="souvenirIndex" />
+            <button type="submit">Wybierz</button>
+          </form>
+        </div>
+      </div>
+    </div>
+    <div class="comeback">
+      <a href="/"> Powrót </a>
+    </div>
+  </body>
 </html>

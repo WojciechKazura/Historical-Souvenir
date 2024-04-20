@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Rozpoczynam scenaiusz.</title>
-</head>
-<body>
-<div th:text ="${scenario.name}"></div>
-<div>
-    <div th:text="${souvenir.name}"></div>
-    <div th:text="${souvenir.souvenirYear}"></div>
-    <div th:text="${souvenir.historicalPeriod}"></div>
-    <img th:src="${'images/'+souvenir.imageName}">
-    <div th:text="${souvenir.article}"></div>
-    <form action="/scenario-start" method="post">
-        <input type="hidden" th:value="${scenario.id}" name="scenarioID">
-        <input type="hidden" th:value="${souvenirIndex+1}" name="souvenirIndex">
-        <button type="submit">
-            Następna pamiatka.
-        </button>
-    </form>
-
-</div>
-</body>
+    <link rel="stylesheet" href="../static/styles.css" />
+  </head>
+  <body>
+    <div th:text="${scenario.name}"></div>
+    <div>
+      <div th:text="${souvenir.name}"></div>
+      <div th:text="${souvenir.souvenirYear}"></div>
+      <div th:text="${souvenir.historicalPeriod}"></div>
+      <img th:src="${'images/'+souvenir.imageName}" />
+      <div th:text="${souvenir.article}"></div>
+      <form action="/scenario-start" method="post">
+        <input type="hidden" th:value="${scenario.id}" name="scenarioID" />
+        <input
+          type="hidden"
+          th:value="${souvenirIndex+1}"
+          name="souvenirIndex" />
+        <button type="submit">Następna pamiatka.</button>
+      </form>
+    </div>
+  </body>
 </html>

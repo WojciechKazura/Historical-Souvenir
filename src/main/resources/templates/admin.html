@@ -1,50 +1,33 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Title</title>
-</head>
-<body>
-<tr th:each="souvenir:${souvenirs} ">
-  <th th:text="${souvenir.id}">
-    id
-  </th>
-  <th th:text="${souvenir.name}">
-    name
-  </th>
-  <th th:text="${souvenir.souvenirYear}">
-    year
-  </th>
-  <th th:text="${souvenir.category}">
-    category
-  </th>
-  <th th:text="${souvenir.historicalPeriod}">
-    historicalPeriod
-  </th>
-  <th>
-    <img th:src="${'images/'+souvenir.imageName}" alt="Obrazek">
-
-  </th>
-  <th>
-    <form method="post" action="/admin">
-      <input type="hidden" name ="souvenirID"  th:value="${souvenir.id}">
-      <button type="submit">
-        akceptuj
-      </button>
-    </form>
-  </th>
-</tr>
-
-</table>
-
-<div>
-  <a href="/">
-    Powrót
-  </a>
-</div>
-
-
-
-
-</body>
+    <link href="../static/styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="admin-root">
+      <div th:each="souvenir:${souvenirs} " class="souvenir-card">
+        <div>
+          <p class="id" th:text="${souvenir.id}">id</p>
+          <h3 class="name" th:text="${souvenir.name}">name</h3>
+          <p class="year" th:text="${souvenir.souvenirYear}">year</th>
+          <p class="category" th:text="${souvenir.category}">category</th>
+          <p class="historical-period" th:text="${souvenir.historicalPeriod}">historicalPeriod</th>
+        </div>
+        <div class="image">
+          <img th:src="${'images/'+souvenir.imageName}" alt="Obrazek" />
+        </div>
+        <th>
+          <form method="post" action="/admin">
+            <input type="hidden" name="souvenirID" th:value="${souvenir.id}" />
+            <button type="submit">Akceptuj</button>
+          </form>
+        </th>
+      </div>
+    </div>
+    <div class="comeback">
+      <a href="/"> Powrót </a>
+    </div>
+  </body>
 </html>

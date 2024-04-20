@@ -1,49 +1,49 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Dodawanie pamiątek</title>
-</head>
-<body>
-add
-<div>
-    <form action="/add-souvenir" method="post" enctype="multipart/form-data">
-        <label>
-            Podaj nazwę pamiątki.
-        </label>
-        <input type="text" name="name">
-        <label>
-            Wprowadz rok z którego pochodzi pamiątka.
-        </label>
-        <input type="number" name="year">
-        <label>
-            Podaj kategorie pamiątki.
-        </label>
+    <link href="../static/styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="add-souvenir-root">
+      <h1 class="header">Dodaj pamiątke!</h1>
+
+      <form
+        action="/add-souvenir"
+        method="post"
+        enctype="multipart/form-data"
+        class="add-souvenir-form">
+        <div class="form-input">
+          <label> Podaj nazwę pamiątki. </label>
+          <input type="text" name="name" />
+        </div>
+        <div class="form-input">
+          <label> Wprowadz rok z którego pochodzi pamiątka. </label>
+          <input type="number" name="year" />
+        </div>
+        <label> Podaj kategorie pamiątki. </label>
         <select name="category">
-            <option value="uniform">Umundurowanie </option>
-            <option value="weapon">Broń</option>
-            <option value="medal">Odznaczenia</option>
-            <option value="document">Dokumenty</option>
-            <option value="other">Inne</option>
+          <option value="uniform">Umundurowanie</option>
+          <option value="weapon">Broń</option>
+          <option value="medal">Odznaczenia</option>
+          <option value="document">Dokumenty</option>
+          <option value="other">Inne</option>
         </select>
-        <label>
-            Podaj okres historyczny.
-        </label>
-        <input type="text" name="historicalPeriod">
-        <input type="file" name="image" accept="image/*">
-        <label>
-            Wprowadź artykuł.
-        </label>
-        <textarea rows="5" name="article" ></textarea>
-        <button type="submit">
-            Dodaj pamiątkę
-        </button>
-    </form>
-</div>
-<div>
-    <a href="/">
-        Powrót.
-    </a>
-</div>
-</body>
+        <div class="form-input">
+          <label> Podaj okres historyczny. </label>
+          <input type="text" name="historicalPeriod" />
+        </div>
+        <input type="file" name="image" accept="image/*" />
+        <div class="form-input">
+          <label> Wprowadź artykuł. </label>
+          <textarea rows="5" name="article"></textarea>
+        </div>
+        <button type="submit">Dodaj pamiątkę</button>
+      </form>
+      <div class="comeback">
+        <a href="/"> Powrót. </a>
+      </div>
+    </div>
+  </body>
 </html>

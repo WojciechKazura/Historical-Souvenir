@@ -1,51 +1,65 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>HomePage</title>
+    <link rel="stylesheet" href="../static/styles.css" />
+    <script defer src="../static/navbar.js"></script>
+  </head>
+  <body>
+    <div class="home-root">
+      <nav>
+        <h1>Strona Historyczna</h1>
+        <div class="hamburger" id="hamburger">
+          <img
+            src="../static/menu-line.svg"
+            style="width: 20px; height: 20px" />
+        </div>
+        <ul id="list">
+          <li><a href="/add-souvenir"> Dodaj pamiątki. </a></li>
+          <li><a href="/view-souvenirs"> Przeglądaj pamiątki. </a></li>
+          <li><a href="/add-scenario"> Dodaj scenariusz. </a></li>
+          <li><a href="/view-scenarios"> Przeglądaj scenariusze </a></li>
+          <li><a href="/add-user"> Dodaj użytkownika </a></li>
+          <li><a href="/login"> Zaloguj się </a></li>
+          <li><a href="/admin" th:if="${isAdmin}"> Dla administratora </a></li>
+        </ul>
+      </nav>
+      <h2 class="text" th:text="${description}"></h2>
+      <div class="wrapper">
+        <div class="content">
+          <h1>
+            Witaj w naszej społeczności pamiątek i scenariuszy historycznych!
+          </h1>
+          <p>
+            Witaj! Cieszymy się, że odwiedziłeś naszą stronę, gdzie historia
+            staje się żywa dzięki pamiątkom i scenariuszom historycznym
+            dodawanym przez społeczność. Nasza platforma to miejsce, gdzie
+            pasjonaci historii mogą dzielić się swoimi fascynującymi
+            znaleziskami, opowieściami i refleksjami na temat przeszłości.
+          </p>
+        </div>
+        <div class="content">
+          <h1>Dziel się</h1>
+          <p>
+            Jesteś właścicielem ciekawej pamiątki związanej z historycznym
+            wydarzeniem? Podziel się nią z nami! Dodaj swoje zdjęcia, opisy i
+            historie, aby inni mogli również cieszyć się tym, co masz do
+            zaoferowania.
+          </p>
+        </div>
 
-</head>
-<body>
-<h1>
-    Strona Historyczna
-</h1>
-<h2 th:text="${description}">
-</h2>
-<div>
-    <a href="/add-souvenir">
-        Dodaj pamiątki.
-    </a>
-</div>
-<div>
-    <a href="/view-souvenirs">
-        Przeglądaj pamiątki.
-    </a>
-</div>
-<div>
-    <a href="/add-scenario">
-        Dodaj scenariusz.
-    </a>
-</div>
-<div>
-    <a href='/view-scenarios'>
-        Przeglądaj scenariusze
-    </a>
-</div>
-<div>
-    <a href='/add-user'>
-        Dodaj urzytkownika
-    </a>
-</div>
-<div>
-    <a href='/login'>
-        Zaloguj się
-    </a>
-</div>
-<div>
-    <a href='/admin' th:if="${isAdmin}">
-        Dla administratora
-    </a>
-</div>
-
-</body>
+        <div class="content">
+          <h1>Odkrywaj</h1>
+          <p>
+            Przenieś się w czasie, przeglądając bogactwo pamiątek i scenariuszy
+            historycznych zgromadzonych przez naszą społeczność. Niezależnie od
+            tego, czy interesują Cię starożytne cywilizacje, średniowieczne
+            bitwy, czy wydarzenia z najnowszej historii, znajdziesz tutaj coś
+            dla siebie.
+          </p>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>

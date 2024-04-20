@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Dodaj urzytkownika.</title>
-</head>
-<body>
-
-<form action="/add-user" method="post">
-    <label>
-        Wprowadź dane urzytkownika.
-    </label>
-    <label>
-        Wprowadź nazwe uzrytkownika.
-    </label>
-    <input type="text" name="login" >
-    <label>
-        Podaj hasło.
-    </label>
-    <input type="text" name="password" >
-    <button type="submit">Dodaj urzytkownika</button>
-
-</form>
-
-
-</body>
+    <link href="../static/styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="add-user-root">
+      <form action="/add-user" method="post" class="add-user-form">
+        <h1>Wprowadź dane użytkownika.</h1>
+        <div class="form-input">
+          <label> Wprowadź nazwe użytkownika. </label>
+          <input type="text" name="login" />
+        </div>
+        <div class="form-input">
+          <label> Podaj hasło. </label> <input type="text" name="password" />
+        </div>
+        <button type="submit">Dodaj urzytkownika</button>
+      </form>
+      <div class="comeback">
+        <a href="/"> Powrót. </a>
+      </div>
+    </div>
+  </body>
 </html>

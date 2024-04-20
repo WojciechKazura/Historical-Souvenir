@@ -1,27 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Dodaj sceniariusz</title>
-</head>
-<body>
-
-    <form action="/add-scenario" method="post">
-        <label>
-            Wybierz pamiątki do sceniariusza.
-        </label>
-        <label>
-            Wprowadź nazwe scenariusza.
-        </label>
-        <input type="text" name="name" >
-        <label>
-            Wprowadź opis scenariusza .
-        </label>
-        <input type="text" name="description" >
+    <link rel="stylesheet" href="../static/styles.css" />
+  </head>
+  <body>
+    <div class="add-scenario-root">
+      <form action="/add-scenario" method="post" class="add-scenario-form">
+        <h1>Wybierz pamiątki do sceniariusza.</h1>
+        <div class="form-input">
+          <label> Wprowadź nazwe scenariusza. </label>
+          <input type="text" name="name" />
+        </div>
+        <div class="form-input">
+          <label> Wprowadź opis scenariusza . </label>
+          <input type="text" name="description" />
+        </div>
         <button type="submit">Dodaj scenariusz</button>
-
-    </form>
-
-
-</body>
+      </form>
+      <div class="comeback">
+        <a href="/"> Powrót </a>
+      </div>
+    </div>
+  </body>
 </html>

@@ -1,3 +1,384 @@
-table, th, td {
+@import url("https://fonts.googleapis.com/css2?family=Sedan:ital@0;1&display=swap");
+
+table,
+th,
+td {
   border: 1px solid black;
+}
+
+* {
+  box-sizing: border-box;
+  font-family: "Sedan", serif;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: black;
+  text-decoration: none;
+  position: relative;
+  &::after {
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    height: 3px;
+    background-color: black;
+  }
+  &:after {
+    content: "";
+    position: absolute;
+    height: 2px;
+    background-color: black;
+    width: 0%;
+    bottom: 0;
+    transform-origin: left;
+    transition-duration: 0.2s;
+  }
+  &:hover {
+    &::after {
+      width: 100%;
+    }
+  }
+}
+
+input,
+select,
+button {
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: solid 1px rgb(136, 136, 136);
+  font-size: 1rem;
+}
+
+button {
+  cursor: pointer;
+  background-color: white;
+  transition-duration: 0.2s;
+}
+
+button:hover {
+  background-color: rgb(231, 231, 231);
+}
+
+label {
+  font-weight: 500;
+}
+
+.form-input {
+  gap: 0.3rem;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Navbar classes */
+
+.list-unfolded {
+  max-height: 500px;
+}
+
+/*HOME*/
+.home-root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  padding: 1rem;
+  text-align: center;
+  background-color: white;
+  .hamburger {
+    position: absolute;
+    right: 1.4rem;
+    top: 1.4rem;
+    cursor: pointer;
+  }
+  h1 {
+  }
+  ul {
+    background-color: white;
+    margin-top: 2rem;
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    max-height: 0px;
+    overflow: hidden;
+    transition: max-height 0.2s;
+    transform-origin: top;
+    li {
+      margin: 0.4rem 0;
+    }
+  }
+}
+
+.text {
+  text-align: center;
+}
+
+.wrapper {
+  margin-top: 3rem;
+}
+
+.content {
+  margin-top: 3rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  width: 800px;
+}
+
+/*View Souvenirs*/
+.comeback {
+  position: fixed;
+  left: 1rem;
+  top: 1rem;
+}
+
+.souvenirs-root {
+  margin: 4rem 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+}
+
+.view-souvenirs-form {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  gap: 1rem;
+}
+
+.view-souvenirs-list {
+  .header {
+    margin-bottom: 1rem;
+  }
+}
+
+.souvenir-card {
+  width: 800px;
+  border: solid 1px gray;
+  border-radius: 5px;
+  padding: 1rem;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  .id {
+    color: gray;
+  }
+  .name {
+    margin: 0.5rem 0;
+    font-weight: bold;
+  }
+  .year {
+    margin-bottom: 0.2rem;
+  }
+  .category {
+  }
+  .historical-period {
+  }
+  .image {
+    border: solid 1px gray;
+    border-radius: 5px;
+    overflow: hidden;
+    img {
+      width: 300px;
+      height: 300px;
+      object-fit: cover;
+    }
+  }
+}
+
+/*Add scenario*/
+.add-scenario-root {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  margin: 4rem 0;
+}
+.add-scenario-form {
+  display: flex;
+  flex-direction: column;
+  width: 800px;
+  gap: 1rem;
+}
+
+/*Add souvenir to scenario*/
+
+.add-souvenir-to-scenario-root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 4rem 0;
+  gap: 1rem;
+  .header {
+  }
+}
+
+.add-souvenir-to-scenario-form {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 0.5rem;
+  width: 800px;
+}
+
+/*Add souvenir*/
+
+.add-souvenir-root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 4rem 0 0;
+  .header {
+    margin-bottom: 1rem;
+  }
+}
+
+.add-souvenir-form {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/*Loggin */
+
+.loggin {
+  text-align: center;
+  margin-top: 1rem;
+}
+
+/*Add user*/
+.add-user-root {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 4rem 0 0;
+}
+
+.add-user-form {
+  width: 800px;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/*Admin root*/
+
+.admin-root {
+  padding: 4rem 0;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+/* View scenarios */
+.view-scenarios-root {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  .header {
+    margin: 4rem 0 0.5rem;
+    width: 800px;
+    text-align: left;
+  }
+}
+
+.scenario-card {
+  width: 800px;
+  display: grid;
+  grid-template-columns: auto auto auto 1fr auto;
+  gap: 1rem;
+  padding: 0.2rem;
+  border-top: solid 1px gray;
+  * {
+    display: flex;
+    align-items: center;
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .content {
+    width: 100%;
+    padding: 1rem;
+  }
+  .view-souvenirs-form {
+    width: 100%;
+    padding: 1rem;
+  }
+  .souvenir-card {
+    width: 100%;
+    padding: 1rem;
+  }
+  .view-souvenirs-list {
+    width: 100%;
+    padding: 1rem;
+  }
+  .add-scenario-form {
+    width: 100%;
+    padding: 1rem;
+  }
+  .add-souvenir-to-scenario-form {
+    width: 100%;
+    padding: 1rem;
+  }
+  .add-souvenir-form {
+    width: 100%;
+    padding: 1rem;
+  }
+  .add-user-form {
+    width: 100%;
+    padding: 1rem;
+  }
+  .view-scenarios-root {
+    .header {
+      width: 100%;
+    }
+  }
+  .scenario-card {
+    width: 100%;
+  }
+  .scenario-list {
+    width: 100%;
+    padding: 0 1rem;
+  }
+  .view-scenarios-root {
+    .header {
+      padding: 0 1rem;
+    }
+  }
+  .admin-root {
+    padding: 4rem 1rem 0;
+  }
 }

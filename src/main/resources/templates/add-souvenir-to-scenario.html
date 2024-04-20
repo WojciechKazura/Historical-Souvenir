@@ -1,78 +1,44 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.w3.org/1999/xhtml">
-<head>
-    <meta charset="UTF-8">
+  <head>
+    <meta charset="UTF-8" />
     <title>Dodawanie sceniariuszy zwiedzania.</title>
-    <link href="styles.css" rel="stylesheet"/>
-</head>
-<body>
-Stworzono scenariusz.
-<div
-        th:text="'Numer senariusza to '+${scenario.id}+' nazwa scenaruisza:'+${scenario.name}+' opis scenariusza: '+${scenario.description}"
-></div>
-
-<table>
-    <tr>
-        <th>
-            Numer pamiątki:
-        </th>
-        <th>
-            Nazwa pamiątki:
-        </th>
-        <th>
-            Datowanie:
-        </th>
-        <th>
-            Rodzaj:
-        </th>
-        <th>
-            Okres historyczny:
-        </th>
-        <th>
-            Zdjęcie:
-        </th>
-
-
-    </tr>
-    <tr th:each="souvenir:${souvenirs} ">
-        <th th:text="${souvenir.id}">
-            id
-        </th>
-        <th th:text="${souvenir.name}">
-            name
-        </th>
-        <th th:text="${souvenir.souvenirYear}">
-            year
-        </th>
-        <th th:text="${souvenir.category}">
-            category
-        </th>
-        <th th:text="${souvenir.historicalPeriod}">
-            historicalPeriod
-        </th>
-        <th>
-            <img th:src="${'images/'+souvenir.imageName}" alt="Obrazek">
-
-        </th>
-    </tr>
-</table>
-<form action="/add-souvenir-to-scenario" method="post">
-    <label>
-        Wybierz pamiątki do sceniariusza.
-    </label>
-    <label>
-        Wprowadz id pamiątki.
-    </label>
-    <input type ="hidden" name ="scenarioID"  th:value="${scenario.id}"
-
-    >
-    <input type="number" name="souvenirID" min="0">
-    <button type="submit">Dodaj</button>
-</form>
-<div>
-    <a href="/">
-        Powrót.
-    </a>
-</div>
-</body>
+    <link href="../static/styles.css" rel="stylesheet" />
+  </head>
+  <body>
+    <div class="add-souvenir-to-scenario-root">
+      <h1 class="header">Stworzono scenariusz!</h1>
+      <form
+        action="/add-souvenir-to-scenario"
+        method="post"
+        class="add-souvenir-to-scenario-form">
+        <h2 class="header"> Wybierz pamiątki do sceniariusza. </h2>
+        <div class="form-input">
+          <label> Wprowadz id pamiątki. </label>
+          <input type="hidden" name="scenarioID" th:value="${scenario.id}" />
+        </div>
+        <input type="number" name="souvenirID" min="0" />
+        <button type="submit">Dodaj</button>
+      </form>
+      <div class="view-souvenirs-list">
+        <h2 class="header">Lista pamiątek</h2>
+        <div th:each="souvenir:${souvenirs} " class="souvenir-card">
+            <div>
+                <p class="id" th:text="${souvenir.id}">id</p>
+                <h3 class="name" th:text="${souvenir.name}">name</h3>
+                <p class="year" th:text="${souvenir.souvenirYear}">year</th>
+                <p class="category" th:text="${souvenir.category}">category</th>
+                <p class="historical-period" th:text="${souvenir.historicalPeriod}">historicalPeriod</th>
+            </div>
+            <div class="image">
+              <img th:src="${'images/'+souvenir.imageName}" alt="Obrazek" />
+            </div>
+        </div>
+      </div>
+      
+      <div class="comeback">
+        <a href="/"> Powrót. </a>
+      </div>
+    </div>
+  </body>
 </html>
