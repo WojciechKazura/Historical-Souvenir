@@ -4,7 +4,6 @@ package com.souvenire.configuration;
 import com.souvenire.service.UserService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.access.method.P;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -29,6 +28,7 @@ public class SecurityConfig {// juz nie trzeba dziedziczyc po klasie security
         httpSecurity.headers(customizer -> customizer.disable());
         // httpSecurity.authorizeHttpRequests(auth -> auth.anyRequest().permitAll()); wyłącza security
         httpSecurity.authorizeHttpRequests(auth -> auth.requestMatchers("/", "/add-user").permitAll()
+                        .requestMatchers("/styles.css").permitAll()
                         .requestMatchers("/admin").hasRole("admin")
                         .anyRequest().authenticated())
                 .formLogin()
