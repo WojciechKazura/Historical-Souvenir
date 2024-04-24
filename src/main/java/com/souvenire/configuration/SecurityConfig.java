@@ -37,7 +37,7 @@ public class SecurityConfig {// juz nie trzeba dziedziczyc po klasie security
         return httpSecurity.build();
     }
 
-    @Bean
+   /* @Bean
     public InMemoryUserDetailsManager getUserDetailsManager() {
         //tworze obiekt uzytkownika
         UserDetails user1 = User.withUsername("admin")
@@ -52,6 +52,6 @@ public class SecurityConfig {// juz nie trzeba dziedziczyc po klasie security
 
         //tworzę obiekt zarzadzajacy uzytkownikami
         return new InMemoryUserDetailsManager(user1, user2);
-    }
+    }*/
 
 }

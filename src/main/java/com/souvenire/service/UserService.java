@@ -3,6 +3,7 @@ package com.souvenire.service;
 
 import com.souvenire.entity.User;
 import com.souvenire.repository.UserRepository;
+import jakarta.annotation.PostConstruct;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -27,10 +28,18 @@ public class UserService implements UserDetailsService {
         this.passwordEncoder = passwordEncoder;
     }
 
+    @PostConstruct
+    public void createAdminIfNotExist() {
+        if (userRepository.findAllByAdmin(true).isEmpty()) {
+            User user = new User("admin", passwordEncoder.encode("admin"));
+            user.setAdmin(true);
+            userRepository.save(user);
+        }
+    }
+
     public void addUser(String login, String password) throws IOException {
         User user = new User(login, passwordEncoder.encode(password));
         userRepository.save(user);
-
     }
 
     @Override
