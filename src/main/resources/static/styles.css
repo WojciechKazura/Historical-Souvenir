@@ -133,7 +133,12 @@ nav {
     }
   }
 }
-
+#message{
+color: green;
+}
+#userName{
+color: green
+}
 .text {
   text-align: center;
 }

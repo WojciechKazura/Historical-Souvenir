@@ -31,6 +31,12 @@
           <h1>
             Witaj w naszej społeczności pamiątek i scenariuszy historycznych!
           </h1>
+          <h2 id="userName" th:if="${userName}" th:text="${'Zalogowano jako: '+userName}">
+
+          </h2>
+          <h2 id="message" th:if="${message}" th:text="${message}">
+
+          </h2>
           <p>
             Witaj! Cieszymy się, że odwiedziłeś naszą stronę, gdzie historia
             staje się żywa dzięki pamiątkom i scenariuszom historycznym

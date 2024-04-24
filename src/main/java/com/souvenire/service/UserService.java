@@ -44,15 +44,15 @@ public class UserService implements UserDetailsService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        Optional<User> userOptional=userRepository.findById(username);
-        if(userOptional.isPresent()){
+        Optional<User> userOptional = userRepository.findById(username);
+        if (userOptional.isPresent()) {
             UserDetails userDetails = org.springframework.security.core.userdetails.User.withUsername(username)
                     .password(userOptional.get().getPassword())
                     .roles(userOptional.get().getRole())
                     .build();
             return userDetails;
         }
-        throw  new UsernameNotFoundException("Nie ma takiego użytkownika.");
+        throw new UsernameNotFoundException("Nie ma takiego użytkownika.");
     }
 
     public boolean isAdmin() {
@@ -69,5 +69,18 @@ public class UserService implements UserDetailsService {
             }
         }
         return false;
+    }
+
+    private Optional<UserDetails> getLoggingUser() {
+        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+        Object user = authentication.getPrincipal();
+        if(user instanceof UserDetails){
+            return Optional.of((UserDetails)user);
+        }
+        return Optional.empty();
+    }
+
+    public String getUserName() {
+        return getLoggingUser().map(user->user.getUsername()).orElse("");
     }
 }

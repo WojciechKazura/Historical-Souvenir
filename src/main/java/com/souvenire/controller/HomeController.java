@@ -23,11 +23,13 @@ public class HomeController {
     ModelAndView getHomePage() {
         ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("home.html");//plik html
-        String description = "Strona przechowuje informacje o pamiatkach historycznych.";
         boolean isAdmin = userService.isAdmin();
         System.out.println("Czy admin "+isAdmin);
-        modelAndView.addObject("description", description);
         modelAndView.addObject("isAdmin", isAdmin );
+        String userName=userService.getUserName();
+        if(!userName.isEmpty()){
+            modelAndView.addObject("userName",userName);
+        }
         return modelAndView;
     }
 
